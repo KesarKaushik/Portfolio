@@ -1,115 +1,614 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kesar Kaushik - Resume</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kesar Kaushik — Resume</title>
+  <meta name="description" content="Resume of Kesar Kaushik - B.Tech Computer Science Student & Developer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #050505; color: #fff; padding: 40px; }
-    .container { max-width: 900px; margin: 0 auto; background: #0a0a0a; border: 1px solid rgba(139,92,246,0.2); border-radius: 20px; padding: 50px; }
-    h1 { font-size: 36px; font-weight: 800; background: linear-gradient(135deg, #8b5cf6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px; }
-    .subtitle { color: #06b6d4; font-size: 14px; font-weight: 500; margin-bottom: 8px; }
-    .summary { font-size: 13px; color: #a0a0a0; line-height: 1.6; margin-bottom: 24px; max-width: 700px; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-    .section { margin-bottom: 30px; }
-    .section h2 { font-size: 16px; font-weight: 700; color: #8b5cf6; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; border-bottom: 1px solid rgba(139,92,246,0.15); padding-bottom: 8px; }
-    .item { margin-bottom: 16px; }
-    .item h3 { font-size: 14px; font-weight: 600; }
-    .item p { font-size: 13px; color: #a0a0a0; margin-top: 2px; line-height: 1.5; }
-    .item .date { font-size: 11px; color: #06b6d4; font-weight: 500; }
-    .contact { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
-    .contact a { color: #a0a0a0; font-size: 13px; text-decoration: none; padding: 6px 14px; border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; transition: all 0.2s; }
-    .contact a:hover { border-color: rgba(139,92,246,0.3); color: #fff; }
-    .skills { display: flex; flex-wrap: wrap; gap: 6px; }
-    .skills span { padding: 4px 12px; font-size: 12px; border: 1px solid rgba(139,92,246,0.15); border-radius: 20px; color: #8b5cf6; }
-    @media print { body { background: #fff; color: #000; padding: 20px; } .container { background: #fff; border: none; padding: 30px; } h1 { -webkit-text-fill-color: #8b5cf6; } .subtitle { color: #06b6d4; } .summary { color: #333; } .item p { color: #333; } .contact a { color: #333; border-color: #ddd; } .skills span { color: #8b5cf6; border-color: #8b5cf6; } .section h2 { color: #8b5cf6; } }
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #050505;
+      --bg-card: #0a0a0a;
+      --bg-glass: rgba(255,255,255,0.04);
+      --bg-glass-hover: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.06);
+      --border-accent: rgba(139,92,246,0.2);
+      --text: #ffffff;
+      --text-secondary: #a0a0a0;
+      --text-muted: #666;
+      --accent-purple: #8b5cf6;
+      --accent-cyan: #06b6d4;
+      --accent-pink: #ec4899;
+      --radius: 20px;
+      --radius-sm: 12px;
+      --radius-xs: 8px;
+      --shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+    }
+    ::selection { background: var(--accent-purple); color: #fff; }
+
+    /* ========== LAYOUT ========== */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    .resume-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius);
+      padding: 48px 52px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Top glow accent */
+    .resume-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 40%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-purple), var(--accent-cyan), transparent);
+      border-radius: 2px;
+    }
+
+    /* ========== HEADER ========== */
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+    .header-left { flex: 1; min-width: 240px; }
+    .header-right { flex-shrink: 0; }
+
+    .name {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan), var(--accent-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      font-size: clamp(13px, 1.5vw, 15px);
+      color: var(--accent-cyan);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .bio {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    /* Download / Back CTA */
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(139,92,246,0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(139,92,246,0.4);
+    }
+    .btn-secondary {
+      background: var(--bg-glass);
+      color: var(--text);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-glass-hover);
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+    }
+
+    /* ========== CONTACT BAR ========== */
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .contact-item:hover {
+      border-color: var(--border-accent);
+      color: var(--text);
+      background: var(--bg-glass-hover);
+    }
+    .contact-item .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent-purple);
+      flex-shrink: 0;
+    }
+    .contact-item .dot.cyan { background: var(--accent-cyan); }
+    .contact-item .dot.pink { background: var(--accent-pink); }
+
+    /* ========== GRID ========== */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    @media (max-width: 768px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    /* ========== SECTIONS ========== */
+    .section { margin-bottom: 28px; }
+    .section:last-child { margin-bottom: 0; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent-purple);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title .title-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border-accent), transparent);
+    }
+
+    /* ========== ITEMS ========== */
+    .item {
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border-radius: var(--radius-xs);
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      transition: border-color 0.25s ease;
+    }
+    .item:last-child { margin-bottom: 0; }
+    .item:hover { border-color: var(--border-accent); }
+
+    .item-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 2px;
+      color: var(--text);
+    }
+    .item-org {
+      font-size: 12px;
+      color: var(--accent-cyan);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .item-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .item-date {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ========== SKILLS ========== */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .skill-tag {
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 500;
+      border-radius: 9999px;
+      background: rgba(139,92,246,0.08);
+      border: 1px solid rgba(139,92,246,0.15);
+      color: var(--accent-cyan);
+      transition: all 0.25s ease;
+    }
+    .skill-tag:hover {
+      background: rgba(139,92,246,0.15);
+      border-color: var(--accent-purple);
+      transform: translateY(-1px);
+    }
+
+    /* ========== PROJECT TAG INLINE ========== */
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 6px;
+    }
+    .project-tag {
+      padding: 2px 10px;
+      font-size: 10px;
+      font-weight: 500;
+      border-radius: 9999px;
+      background: rgba(6,182,212,0.08);
+      border: 1px solid rgba(6,182,212,0.12);
+      color: var(--accent-cyan);
+    }
+
+    /* ========== PRINT BUTTON (Screen only) ========== */
+    .print-hide { display: inline-flex; }
+
+    /* ========== ANIMATIONS ========== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes glow-pulse {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.15); }
+    }
+    .resume-card { animation: fadeInUp 0.6s ease-out; }
+    .header { animation: fadeInUp 0.6s ease-out 0.1s both; }
+    .contact-bar { animation: fadeInUp 0.6s ease-out 0.2s both; }
+    .grid-2 > div:first-child { animation: fadeInUp 0.6s ease-out 0.3s both; }
+    .grid-2 > div:last-child { animation: fadeInUp 0.6s ease-out 0.4s both; }
+
+    /* Pulse glow on .name on hover */
+    .name { animation: glow-pulse 3s ease-in-out infinite; }
+
+    /* ========== FOOTER ========== */
+    .footer-note {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .footer-note a {
+      color: var(--accent-purple);
+      text-decoration: none;
+    }
+    .footer-note a:hover { color: var(--accent-cyan); }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .container { padding: 20px 12px; }
+      .resume-card { padding: 28px 20px; border-radius: 16px; }
+      .header { flex-direction: column; }
+      .btn-group { width: 100%; }
+      .btn { flex: 1; justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .resume-card { padding: 20px 14px; }
+      .contact-item { font-size: 11px; padding: 4px 12px; }
+      .item { padding: 12px; }
+    }
+
+    /* ========== PRINT STYLES ========== */
+    @media print {
+      @page { margin: 0.5in; size: A4; }
+      body { background: #fff !important; color: #000 !important; }
+      .container { padding: 0 !important; max-width: 100% !important; }
+      .resume-card {
+        background: #fff !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        animation: none !important;
+      }
+      .resume-card::before { display: none !important; }
+      .name {
+        -webkit-text-fill-color: #8b5cf6 !important;
+        color: #8b5cf6 !important;
+        animation: none !important;
+      }
+      .subtitle { color: #06b6d4 !important; }
+      .bio { color: #333 !important; }
+      .item {
+        background: #f8f8f8 !important;
+        border-color: #eee !important;
+        break-inside: avoid;
+      }
+      .item-title { color: #000 !important; }
+      .item-desc { color: #444 !important; }
+      .item-org { color: #06b6d4 !important; }
+      .contact-item {
+        background: #f0f0f0 !important;
+        border-color: #ddd !important;
+        color: #333 !important;
+      }
+      .contact-item:hover { border-color: #8b5cf6 !important; color: #000 !important; }
+      .skill-tag { background: #f0edff !important; border-color: #8b5cf6 !important; color: #8b5cf6 !important; }
+      .section-title { color: #8b5cf6 !important; border-bottom-color: #eee !important; }
+      .btn-group { display: none !important; }
+      .print-hide { display: none !important; }
+      .footer-note { display: none !important; }
+      .section { break-inside: avoid; }
+      .contact-bar { border-bottom-color: #dedede !important; }
+      .item:hover { border-color: #eee !important; }
+      .skill-tag:hover { transform: none !important; }
+      .project-tag { background: #eef2ff !important; border-color: #c7d2fe !important; color: #4f46e5 !important; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Kesar Kaushik</h1>
-    <div class="subtitle">B.Tech Computer Science Student | AI-Assisted Developer | Full-Stack Builder</div>
-    
-    <p class="summary">CSE student with experience in AI-assisted software development, building full-stack applications, debugging complex issues, and rapidly prototyping projects using modern development tools.</p>
+    <div class="resume-card">
+      <!-- Header -->
+      <div class="header">
+        <div class="header-left">
+          <h1 class="name">Kesar Kaushik</h1>
+          <div class="subtitle">B.Tech Computer Science Student &middot; AI-Assisted Developer &middot; Full-Stack Builder</div>
+          <p class="bio">
+            CSE student with experience in AI-assisted software development, building full-stack applications, debugging complex issues, and rapidly prototyping projects using modern development tools.
+          </p>
+        </div>
+        <div class="header-right">
+          <div class="btn-group">
+            <a href="javascript:window.print()" class="btn btn-primary print-hide">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Download PDF
+            </a>
+            <a href="/" class="btn btn-secondary print-hide">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              Back to Portfolio
+            </a>
+          </div>
+        </div>
+      </div>
 
-    <div class="contact">
-      <a href="mailto:kesharkaushik5@gmail.com">kesharkaushik5@gmail.com</a>
-      <a href="https://github.com/KesarKaushik" target="_blank">github.com/KesarKaushik</a>
-      <a href="https://linkedin.com/in/kesar-kaushik-880b0b3b5" target="_blank">linkedin.com/in/kesar-kaushik</a>
-      <a href="#">Greater Noida, India</a>
+      <!-- Contact Bar -->
+      <div class="contact-bar">
+        <a href="mailto:kesharkaushik5@gmail.com" class="contact-item"><span class="dot"></span> kesharkaushik5@gmail.com</a>
+        <a href="https://github.com/KesarKaushik" target="_blank" rel="noopener" class="contact-item"><span class="dot cyan"></span> github.com/KesarKaushik</a>
+        <a href="https://linkedin.com/in/kesar-kaushik-880b0b3b5" target="_blank" rel="noopener" class="contact-item"><span class="dot pink"></span> linkedin.com/in/kesar-kaushik</a>
+        <span class="contact-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Greater Noida, India</span>
+      </div>
+
+      <!-- Grid: 2 columns -->
+      <div class="grid-2">
+        <!-- LEFT COLUMN -->
+        <div>
+          <!-- Education -->
+          <div class="section">
+            <div class="section-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+              Education
+              <span class="title-line"></span>
+            </div>
+            <div class="item">
+              <div class="item-title">B.Tech Computer Science Engineering</div>
+              <div class="item-org">Noida Institute of Engineering and Technology (NIET)</div>
+              <div class="item-desc">Second Year — Pursuing with focus on software development, AI, and modern web technologies.</div>
+            </div>
+            <div class="item">
+              <div class="item-title">Class 12 – PCM with Computer Science</div>
+              <div class="item-org">Delhi Public School (CBSE)</div>
+              <div class="item-desc">Completed higher secondary with Physics, Chemistry, Mathematics, and Computer Science.</div>
+            </div>
+            <div class="item">
+              <div class="item-title">Class 10</div>
+              <div class="item-org">Delhi Public School (CBSE)</div>
+              <div class="item-desc">Secondary education with strong academic foundation.</div>
+            </div>
+          </div>
+
+          <!-- Skills -->
+          <div class="section">
+            <div class="section-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              Skills &amp; Technologies
+              <span class="title-line"></span>
+            </div>
+            <div class="skills-grid">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">Next.js</span>
+              <span class="skill-tag">HTML5</span>
+              <span class="skill-tag">CSS3</span>
+              <span class="skill-tag">Tailwind CSS</span>
+              <span class="skill-tag">SQL</span>
+              <span class="skill-tag">Git &amp; GitHub</span>
+              <span class="skill-tag">Three.js</span>
+              <span class="skill-tag">Framer Motion</span>
+              <span class="skill-tag">AI-Assisted Dev</span>
+              <span class="skill-tag">Prompt Engineering</span>
+              <span class="skill-tag">Rapid Prototyping</span>
+              <span class="skill-tag">Debugging</span>
+              <span class="skill-tag">Code Review</span>
+            </div>
+          </div>
+
+          <!-- Certifications -->
+          <div class="section">
+            <div class="section-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+              Certifications
+              <span class="title-line"></span>
+            </div>
+            <div class="item">
+              <div class="item-title">Python Programming Fundamentals</div>
+              <div class="item-org">NeoColabs</div>
+            </div>
+            <div class="item">
+              <div class="item-title">Advanced Python Programming</div>
+              <div class="item-org">NeoColabs</div>
+            </div>
+            <div class="item">
+              <div class="item-title">Introduction to Cyber Security</div>
+              <div class="item-org">Cisco Networking Academy</div>
+            </div>
+            <div class="item">
+              <div class="item-title">Artificial Intelligence Fundamentals</div>
+              <div class="item-org">AI Learning Track</div>
+            </div>
+            <div class="item">
+              <div class="item-title">Data Structures &amp; Algorithms</div>
+              <div class="item-org">DSA Practice</div>
+            </div>
+            <div class="item">
+              <div class="item-title">Web Development Workshop</div>
+              <div class="item-org">Frontend Development</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div>
+          <!-- Experience -->
+          <div class="section">
+            <div class="section-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              Experience
+              <span class="title-line"></span>
+            </div>
+            <div class="item">
+              <div class="item-title">CodeAlpha Internship</div>
+              <div class="item-org">CodeAlpha</div>
+              <div class="item-desc">Gaining hands-on industry experience in software development, working on real-world projects and collaborative tasks using modern development tools and AI-assisted workflows.</div>
+            </div>
+            <div class="item">
+              <div class="item-title">Frontend Development Internship</div>
+              <div class="item-org">Professional Experience</div>
+              <div class="item-desc">Built responsive web interfaces and contributed to production-level frontend code.</div>
+            </div>
+            <div class="item">
+              <div class="item-title">Python Development Internship</div>
+              <div class="item-org">Professional Experience</div>
+              <div class="item-desc">Developed Python applications, automated workflows, and contributed to backend logic.</div>
+            </div>
+          </div>
+
+          <!-- Projects -->
+          <div class="section">
+            <div class="section-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              Featured Projects
+              <span class="title-line"></span>
+            </div>
+            <div class="item">
+              <div class="item-title">Pro Resume Builder</div>
+              <div class="item-org">Python &middot; Tkinter &middot; JSON &middot; PDF Export</div>
+              <div class="item-desc">Desktop application for creating professional resumes with multiple templates, PDF export, JSON auto-save, live preview, and cover letter generation. Developed using AI-assisted prototyping and iterative debugging.</div>
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">Tkinter</span>
+                <span class="project-tag">JSON</span>
+                <span class="project-tag">PDF Export</span>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-title">VibeFlow Music Player</div>
+              <div class="item-org">Python &middot; Tkinter &middot; SQLite</div>
+              <div class="item-desc">Offline music player with playlists, lyrics support, favourites, dark mode, and local music library. Built through rapid prototyping and iterative development with AI-assisted debugging.</div>
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">Tkinter</span>
+                <span class="project-tag">SQLite</span>
+                <span class="project-tag">Audio</span>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-title">Developer Portfolio</div>
+              <div class="item-org">Next.js 15 &middot; React 19 &middot; Tailwind CSS</div>
+              <div class="item-desc">Premium portfolio with glassmorphism UI, custom cursor, AI chatbot, Three.js, Framer Motion, and smooth animations. Independently developed with AI-assisted workflows for rapid prototyping.</div>
+              <div class="project-tags">
+                <span class="project-tag">Next.js</span>
+                <span class="project-tag">React</span>
+                <span class="project-tag">Tailwind</span>
+                <span class="project-tag">Three.js</span>
+                <span class="project-tag">Framer Motion</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Key Competencies -->
+          <div class="section">
+            <div class="section-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>
+              Key Competencies
+              <span class="title-line"></span>
+            </div>
+            <div class="item">
+              <div class="item-title">AI-Assisted Development</div>
+              <div class="item-desc">Leveraging AI tools to accelerate development, generate boilerplate, debug issues, and implement features efficiently while maintaining code quality.</div>
+            </div>
+            <div class="item">
+              <div class="item-title">Rapid Prototyping</div>
+              <div class="item-desc">Quickly building and iterating on project ideas using modern frameworks and AI-assisted workflows — from concept to MVP in minimal time.</div>
+            </div>
+            <div class="item">
+              <div class="item-title">Debugging &amp; Code Review</div>
+              <div class="item-desc">Strong ability to identify, isolate, and resolve complex bugs across frontend and backend; experienced in reviewing and refactoring code for quality and performance.</div>
+            </div>
+            <div class="item">
+              <div class="item-title">Full-Stack Integration</div>
+              <div class="item-desc">Connecting frontend interfaces with backend logic, APIs, databases, and third-party services to build complete, functional applications.</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="grid">
-      <div>
-        <div class="section">
-          <h2>Education</h2>
-          <div class="item">
-            <h3>B.Tech Computer Science Engineering (2nd Year)</h3>
-            <p>Noida Institute of Engineering and Technology (NIET)</p>
-          </div>
-          <div class="item">
-            <h3>Class 12 – PCM with Computer Science</h3>
-            <p>Delhi Public School (CBSE)</p>
-          </div>
-          <div class="item">
-            <h3>Class 10</h3>
-            <p>Delhi Public School (CBSE)</p>
-          </div>
-        </div>
-
-        <div class="section">
-          <h2>Skills</h2>
-          <div class="skills">
-            <span>Python</span><span>JavaScript</span><span>React</span><span>Next.js</span>
-            <span>HTML5</span><span>CSS3</span><span>SQL</span><span>Git & GitHub</span>
-            <span>VS Code</span><span>Tailwind CSS</span><span>Three.js</span>
-            <span>AI-Assisted Development</span><span>Prompt Engineering</span>
-            <span>Rapid Prototyping</span><span>Debugging & Code Review</span>
-          </div>
-        </div>
-
-        <div class="section">
-          <h2>Certifications</h2>
-<div class="item"><h3>Python Programming Fundamentals</h3><p>NeoColabs</p></div>
-          <div class="item"><h3>Introduction to Cyber Security</h3><p>Cisco Networking Academy</p></div>
-          <div class="item"><h3>Artificial Intelligence Fundamentals</h3><p>AI Learning Track</p></div>
-        </div>
-      </div>
-
-      <div>
-        <div class="section">
-          <h2>Experience</h2>
-          <div class="item">
-            <h3>CodeAlpha Internship</h3>
-            <p>Gaining hands-on industry experience in software development, working on real-world projects and collaborative tasks using modern development tools and AI-assisted workflows.</p>
-          </div>
-        </div>
-
-        <div class="section">
-          <h2>Projects</h2>
-          <div class="item">
-            <h3>Pro Resume Builder</h3>
-            <p>Desktop app built with Python/Tkinter for creating professional resumes with PDF export, JSON auto-save, live preview, and cover letter generation — developed using AI-assisted prototyping and iterative debugging.</p>
-          </div>
-          <div class="item">
-            <h3>VibeFlow Music Player</h3>
-            <p>Offline music player with playlists, lyrics support, favourites, dark mode, and local music library — built with Python, Tkinter, and SQLite through rapid prototyping and continuous refactoring.</p>
-          </div>
-          <div class="item">
-            <h3>Developer Portfolio</h3>
-            <p>Premium portfolio built with Next.js 15, React 19, Tailwind CSS, Framer Motion, Three.js — featuring glassmorphism UI, custom cursor, AI chatbot, and smooth animations with CI/CD deployment.</p>
-          </div>
-        </div>
-
-        <div class="section">
-          <h2>Key Competencies</h2>
-          <div class="item"><h3>AI-Assisted Development</h3><p>Leveraging AI tools to accelerate development, generate boilerplate, debug issues, and implement features efficiently.</p></div>
-          <div class="item"><h3>Rapid Prototyping</h3><p>Quickly building and iterating on project ideas using modern frameworks and AI-assisted workflows from concept to MVP.</p></div>
-          <div class="item"><h3>Debugging & Code Review</h3><p>Strong ability to identify, isolate, and resolve complex bugs; experienced in reviewing and refactoring code for quality.</p></div>
-        </div>
-      </div>
+    <div class="footer-note">
+      &copy; 2026 Kesar Kaushik &mdash; <a href="/" target="_blank">kesarkaushik.github.io/portfolio</a>
     </div>
   </div>
 </body>

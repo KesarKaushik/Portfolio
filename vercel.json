@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "outputDirectory": "out",
+  "trailingSlash": false,
+  "cleanUrls": false,
+  "rewrites": [
+    {
+      "source": "/assets/resume",
+      "destination": "/assets/resume.html"
+    }
+  ],
+  "overrides": {
+    "assets/resume.html": {
+      "contentType": "text/html"
+    }
+  }
+}
+
