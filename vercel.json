@@ -1,8 +1,5 @@
 {
   "version": 2,
-  "outputDirectory": "out",
-  "trailingSlash": false,
-  "cleanUrls": false,
   "rewrites": [
     {
       "source": "/assets/resume",
@@ -10,6 +7,3 @@
     }
   ]
 }
-
-
-
